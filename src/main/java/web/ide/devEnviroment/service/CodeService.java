@@ -8,6 +8,9 @@ import web.ide.devEnviroment.model.CodeDTO;
 import web.ide.devEnviroment.repository.CodeRepo;
 import web.ide.devEnviroment.repository.StudentRepo;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 
 @Service
 public class CodeService {
@@ -23,12 +26,12 @@ public class CodeService {
         this.apiService = apiService;
     }
 
-    public void addCode(CodeDTO codeDTO){
+    public String addCode(CodeDTO codeDTO) throws URISyntaxException, IOException, InterruptedException {
         Code code = new Code();
         code.setStudent(codeDTO.getStudent());
         code.setProgram(codeDTO.getProgram());
         code.setTimestamp(new java.util.Date());
         codeRepo.save(code);
-        apiService.createRequestForApi(codeDTO)
+        return apiService.createRequestForApi(codeDTO);
     }
 }
