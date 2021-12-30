@@ -25,29 +25,29 @@ import java.util.Map;
 @Service
 public class ApiService {
 
-//    public String createRequestForApi(CodeDTO codeDTO) throws URISyntaxException, IOException, InterruptedException {
-//        JSONObject req = new JSONObject();
-//        JSONObject file = new JSONObject();
-//        file.put("name", "Code.py");
-//        file.put("content", codeDTO.getProgram());
-//        JSONArray arr = new JSONArray();
-//        arr.put(file);
-//        req.put("language", "python");
-//        req.put("stdin", codeDTO.getStdin());
-//        req.put("files", arr);
-//        HttpRequest request = HttpRequest.newBuilder()
-//                .uri(new URI("https://onecompiler.com/api/v1/run?access_token=tdCL9qZbYqVZuxmACqmsW425kNMMPBDyP53kgzC385PuzjnwY4QYRXnNhDrCPmx29pgSNhA2PENMMPBDyP53kgxePaYrR6pKce25kENMMPBDyP5Fu"))
-//                .headers("Content-Type", "application/json;charset=UTF-8")
-//                .POST(HttpRequest.BodyPublishers.ofString(req.toString()))
-//                .build();
-//        HttpResponse<String> response = HttpClient.newBuilder()
-//                .build()
-//                .send(request, HttpResponse.BodyHandlers.ofString());
-//        System.out.println(response.body());
-//        return mappingJson(response.body());
-//    }
+    public String createRequestForApiRemote(CodeDTO codeDTO) throws URISyntaxException, IOException, InterruptedException {
+        JSONObject req = new JSONObject();
+        JSONObject file = new JSONObject();
+        file.put("name", "Code.py");
+        file.put("content", codeDTO.getProgram());
+        JSONArray arr = new JSONArray();
+        arr.put(file);
+        req.put("language", "python");
+        req.put("stdin", codeDTO.getStdin());
+        req.put("files", arr);
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI("https://onecompiler.com/api/v1/run?access_token=tdCL9qZbYqVZuxmACqmsW425kNMMPBDyP53kgzC385PuzjnwY4QYRXnNhDrCPmx29pgSNhA2PENMMPBDyP53kgxePaYrR6pKce25kENMMPBDyP5Fu"))
+                .headers("Content-Type", "application/json;charset=UTF-8")
+                .POST(HttpRequest.BodyPublishers.ofString(req.toString()))
+                .build();
+        HttpResponse<String> response = HttpClient.newBuilder()
+                .build()
+                .send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+        return mappingJsonRemote(response.body());
+    }
 
-    public String createRequestForApi(CodeDTO codeDTO) throws URISyntaxException, IOException, InterruptedException {
+    public String createRequestForApiLocal(CodeDTO codeDTO) throws URISyntaxException, IOException, InterruptedException {
         JSONObject req = new JSONObject();
         req.put("stdin", codeDTO.getStdin());
         req.put("program", codeDTO.getProgram());
@@ -85,16 +85,14 @@ public class ApiService {
         }
     }
 
-//    public String mappingJson (String json) throws JsonProcessingException {
-//        ObjectMapper mapper = new ObjectMapper();
-//        Map<String, String> result = mapper.readValue(json, Map.class);
-//        if(result.get("exception") != null){
-//            return result.get("exception");
-//        }
-//        else{
-//            return result.get("stdout");
-//        }
-//    }
-
-
+    public String mappingJsonRemote (String json) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, String> result = mapper.readValue(json, Map.class);
+        if(result.get("exception") != null){
+            return result.get("exception");
+        }
+        else{
+            return result.get("stdout");
+        }
+    }
 }

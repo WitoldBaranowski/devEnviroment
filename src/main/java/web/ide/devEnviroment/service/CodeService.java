@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import web.ide.devEnviroment.api.ApiService;
 import web.ide.devEnviroment.model.Code;
 import web.ide.devEnviroment.model.CodeDTO;
+import web.ide.devEnviroment.model.Supervisor;
 import web.ide.devEnviroment.repository.CodeRepo;
 import web.ide.devEnviroment.repository.StudentRepo;
+import web.ide.devEnviroment.repository.SupervisorRepo;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -17,6 +19,9 @@ public class CodeService {
     private final CodeRepo codeRepo;
     @Autowired
     StudentRepo studentRepo;
+
+    @Autowired
+    SupervisorRepo supervisorRepo;
 
     private final ApiService apiService;
 
@@ -32,6 +37,13 @@ public class CodeService {
         code.setProgram(codeDTO.getProgram());
         code.setTimestamp(new java.util.Date());
         codeRepo.save(code);
-        return apiService.createRequestForApi(codeDTO);
+        Supervisor supervisor = supervisorRepo.findSupervisorById(studentRepo.findStudentById(codeDTO.getStudent().getId()).get().getId());
+        if(supervisor.getLocal()){
+            return apiService.createRequestForApiLocal(codeDTO);
+        }
+        else {
+            return apiService.createRequestForApiRemote(codeDTO);
+        }
+
     }
 }

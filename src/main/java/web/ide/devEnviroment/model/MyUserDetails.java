@@ -22,6 +22,13 @@ public class MyUserDetails implements UserDetails {
         this.authorities = Arrays.stream(s.split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
 
+    public MyUserDetails(Supervisor supervisor) {
+        this.username = supervisor.getUsername();
+        this.password = supervisor.getPassword();
+        String s = "ROLE_SUPERVISOR";
+        this.authorities = Arrays.stream(s.split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;

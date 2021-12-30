@@ -1,44 +1,39 @@
 package web.ide.devEnviroment.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-@Table(name="student")
-public class Student implements Serializable {
+@Table(name="supervisor")
+public class Supervisor {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String username;
     private String email;
     private String password;
+    private Boolean isLocal;
 
-    @ManyToOne
-    @JoinColumn(name="id_supervisor", referencedColumnName = "id", nullable = false)
-    private Supervisor supervisor;
-
-
-    public Student(String username, String email, String password) {
+    public Supervisor(String username, String email, String password, Boolean isLocal) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.isLocal = isLocal;
     }
 
-    public Student(Long id) {
-        this.id = id;
-    }
-
-    public Student() {
+    public Supervisor() {
 
     }
 
+    public Boolean getLocal() {
+        return isLocal;
+    }
+
+    public void setLocal(Boolean local) {
+        isLocal = local;
+    }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -63,15 +58,5 @@ public class Student implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
     }
 }
