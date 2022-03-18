@@ -27,4 +27,11 @@ public class SupervisorController {
         List<CodeDisplayDTO> listOfCodes = supervisorService.returnCodes(studentDTO);
         return new ResponseEntity(listOfCodes, HttpStatus.OK);
     }
+
+    @PostMapping("/isLocal")
+    public ResponseEntity getCodes(@RequestBody SupervisorDTO supervisorDTO){
+        System.out.println(supervisorDTO.getLocal());
+        supervisorService.updateIsLocal(supervisorDTO);
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }

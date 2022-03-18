@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class CodeDisplayDTO {
     private String program;
-    private Date timestamp;
+    private String timestamp;
 
-    public CodeDisplayDTO(String program, Date timestamp) {
+    public CodeDisplayDTO(String program, String timestamp) {
         this.program = program;
         this.timestamp = timestamp;
     }
@@ -19,11 +19,11 @@ public class CodeDisplayDTO {
         this.program = program;
     }
 
-    public Date getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 }

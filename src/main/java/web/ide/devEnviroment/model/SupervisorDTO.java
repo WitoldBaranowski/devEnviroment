@@ -7,6 +7,14 @@ public class SupervisorDTO {
     private String password;
     private Boolean isLocal;
 
+    public SupervisorDTO(Long id, String username, String email, String password, Boolean isLocal) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.isLocal = isLocal;
+    }
+
     public Long getId() {
         return id;
     }
