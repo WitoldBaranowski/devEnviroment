@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import web.ide.devEnviroment.model.Student;
+import web.ide.devEnviroment.model.StudentDTO;
 import web.ide.devEnviroment.service.StudentService;
 
 @RestController
@@ -15,14 +16,14 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping("/a")
+    @PostMapping("/login")
     public String login(){
         return "authenticated succesfully";
     }
 
     @GetMapping("/find/{username}")
-    public ResponseEntity<Student> getStudent(@PathVariable("username") String username){
-        Student student = studentService.findStudentByUsername(username);
+    public ResponseEntity<StudentDTO> getStudent(@PathVariable("username") String username){
+        StudentDTO student = studentService.findStudentByUsername(username);
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 

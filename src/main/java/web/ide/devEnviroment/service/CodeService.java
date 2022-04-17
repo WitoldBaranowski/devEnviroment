@@ -37,7 +37,7 @@ public class CodeService {
         code.setProgram(codeDTO.getProgram());
         code.setTimestamp(new java.util.Date());
         codeRepo.save(code);
-        Supervisor supervisor = supervisorRepo.findSupervisorById(studentRepo.findStudentById(codeDTO.getStudent().getId()).get().getId());
+        Supervisor supervisor = studentRepo.findStudentById(codeDTO.getStudent().getId()).get().getSupervisor();
         if(supervisor.getLocal()){
             return apiService.createRequestForApiLocal(codeDTO);
         }

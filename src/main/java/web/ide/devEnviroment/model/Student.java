@@ -32,6 +32,13 @@ public class Student implements Serializable {
 
     }
 
+    public Supervisor getSupervisor() {
+        return supervisor;
+    }
+
+    public void setSupervisor(Supervisor supervisor) {
+        this.supervisor = supervisor;
+    }
 
     public Long getId() {
         return id;
