@@ -15,9 +15,9 @@ public class MyUserDetails implements UserDetails {
     private String password;
     private List<GrantedAuthority> authorities;
 
-    public MyUserDetails(Student student) {
-        this.username = student.getUsername();
-        this.password = student.getPassword();
+    public MyUserDetails(User user) {
+        this.username = user.getUsername();
+        this.password = user.getPassword();
         String s = "ROLE_STUDENT";
         this.authorities = Arrays.stream(s.split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }

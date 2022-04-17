@@ -11,17 +11,21 @@ public class Student implements Serializable {
     private Long id;
     private String username;
     private String email;
-    private String password;
 
     @ManyToOne
     @JoinColumn(name="id_supervisor", referencedColumnName = "id", nullable = false)
     private Supervisor supervisor;
 
 
-    public Student(String username, String email, String password) {
+    public Student(String username, String email) {
         this.username = username;
         this.email = email;
-        this.password = password;
+    }
+
+    public Student(String username, String email, Supervisor supervisor) {
+        this.username = username;
+        this.email = email;
+        this.supervisor = supervisor;
     }
 
     public Student(Long id) {
@@ -64,13 +68,6 @@ public class Student implements Serializable {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     @Override
     public String toString() {
@@ -78,7 +75,6 @@ public class Student implements Serializable {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 '}';
     }
 }

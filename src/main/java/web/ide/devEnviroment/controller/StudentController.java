@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import web.ide.devEnviroment.model.Student;
 import web.ide.devEnviroment.model.StudentDTO;
+import web.ide.devEnviroment.model.UserDTO;
 import web.ide.devEnviroment.service.StudentService;
 
 @RestController
@@ -28,7 +29,7 @@ public class StudentController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Student> addStudent(@RequestBody Student student){
+    public ResponseEntity<UserDTO> addStudent(@RequestBody UserDTO student){
         Student student1 = studentService.addStudent(student);
         return new ResponseEntity<>(student, HttpStatus.CREATED);
     }

@@ -48,7 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/student/add").permitAll()
                 .anyRequest()
                 .authenticated()
-                .and()/*.httpBasic();*/
+                .and()
                 .formLogin()
                 .loginPage("/")
                 .loginProcessingUrl("/auth")
@@ -59,11 +59,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and().logout()
                 .logoutUrl("/logout");
-//
-//                .hasRole("STUDENT")
-//                .antMatchers("/supervisor/a")
-//                .hasRole("SUPERVISOR")
-//                .and().formLogin();
     }
 
 

@@ -3,10 +3,9 @@ package web.ide.devEnviroment.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.ide.devEnviroment.exeption.StudentNotFoundExeption;
-import web.ide.devEnviroment.model.Student;
-import web.ide.devEnviroment.model.StudentDTO;
-import web.ide.devEnviroment.model.User;
+import web.ide.devEnviroment.model.*;
 import web.ide.devEnviroment.repository.StudentRepo;
+import web.ide.devEnviroment.repository.SupervisorRepo;
 import web.ide.devEnviroment.repository.UserRepo;
 import web.ide.devEnviroment.security.Encryptor;
 
@@ -17,21 +16,28 @@ import java.util.UUID;
 public class StudentService {
     private final StudentRepo studentRepo;
     private final UserRepo userRepo;
+    private final SupervisorRepo supervisorRepo;
     Encryptor encryptor = new Encryptor();
 
     @Autowired
-    public StudentService(StudentRepo studentRepo, UserRepo userRepo) {
+    public StudentService(StudentRepo studentRepo, UserRepo userRepo, SupervisorRepo supervisorRepo) {
         this.studentRepo = studentRepo;
         this.userRepo = userRepo;
+        this.supervisorRepo = supervisorRepo;
     }
 
-    public Student addStudent(Student student){
+    public Student addStudent(UserDTO userDTO){
 
-        String hashPass = encryptor.enctrypt(student.getPassword());
+        String hashPass = encryptor.enctrypt(userDTO.getPassword());
 
-        User user = new User(student.getUsername(),hashPass,student.getId());
+        Supervisor supervisor =  supervisorRepo.findSupervisorById(userDTO.getSupervisorId());
+        Student student1 = new Student(userDTO.getUsername(), userDTO.getEmail(), supervisor);
+        studentRepo.save(student1);
+
+        User user = new User(student1.getUsername(),hashPass,student1.getId());
         userRepo.save(user);
-        return student;//studentRepo.save(student);
+
+        return student1;
     }
 
 
