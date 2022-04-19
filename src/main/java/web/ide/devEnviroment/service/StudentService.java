@@ -26,18 +26,22 @@ public class StudentService {
         this.supervisorRepo = supervisorRepo;
     }
 
-    public Student addStudent(UserDTO userDTO){
+    public boolean addStudent(UserDTO userDTO){
 
-        String hashPass = encryptor.enctrypt(userDTO.getPassword());
+        if(!userRepo.findUserByUsername(userDTO.getUsername()).isPresent()){
+            String hashPass = encryptor.enctrypt(userDTO.getPassword());
 
-        Supervisor supervisor =  supervisorRepo.findSupervisorById(userDTO.getSupervisorId());
-        Student student1 = new Student(userDTO.getUsername(), userDTO.getEmail(), supervisor);
-        studentRepo.save(student1);
+            Supervisor supervisor =  supervisorRepo.findSupervisorById(userDTO.getSupervisorId());
+            Student student1 = new Student(userDTO.getUsername(), userDTO.getEmail(), supervisor);
+            studentRepo.save(student1);
 
-        User user = new User(student1.getUsername(),hashPass,student1.getId());
-        userRepo.save(user);
+            User user = new User(student1.getUsername(),hashPass,student1.getId());
+            userRepo.save(user);
+            return false;
+        }else{
+            return true;
+        }
 
-        return student1;
     }
 
 

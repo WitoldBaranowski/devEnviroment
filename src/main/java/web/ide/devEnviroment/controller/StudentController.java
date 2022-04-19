@@ -29,9 +29,9 @@ public class StudentController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<UserDTO> addStudent(@RequestBody UserDTO student){
-        Student student1 = studentService.addStudent(student);
-        return new ResponseEntity<>(student, HttpStatus.CREATED);
+    public ResponseEntity<Boolean> addStudent(@RequestBody UserDTO userDTO){
+        boolean isExisting = studentService.addStudent(userDTO);
+        return new ResponseEntity<>(isExisting, HttpStatus.CREATED);
     }
 
 }

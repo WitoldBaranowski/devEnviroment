@@ -50,7 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/")
+                .loginPage("/main").permitAll()
                 .loginProcessingUrl("/auth")
                 .usernameParameter("username").passwordParameter("password")
                 .successHandler(successHandler()).failureHandler(failureHandler())
@@ -58,7 +58,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and().logout()
-                .logoutUrl("/logout");
+                .logoutUrl("/logout").permitAll();
     }
 
 
