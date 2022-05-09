@@ -1,4 +1,4 @@
-package web.ide.devEnviroment.model;
+package web.ide.devEnviroment.model.db;
 
 import javax.persistence.*;
 

@@ -6,9 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import web.ide.devEnviroment.model.MyUserDetails;
-import web.ide.devEnviroment.model.Student;
-import web.ide.devEnviroment.model.User;
-import web.ide.devEnviroment.repository.StudentRepo;
+import web.ide.devEnviroment.model.db.User;
 import web.ide.devEnviroment.repository.UserRepo;
 
 import java.util.Optional;

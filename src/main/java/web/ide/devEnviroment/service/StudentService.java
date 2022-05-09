@@ -4,13 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.ide.devEnviroment.exeption.StudentNotFoundExeption;
 import web.ide.devEnviroment.model.*;
+import web.ide.devEnviroment.model.db.Student;
+import web.ide.devEnviroment.model.db.Supervisor;
+import web.ide.devEnviroment.model.db.User;
 import web.ide.devEnviroment.repository.StudentRepo;
 import web.ide.devEnviroment.repository.SupervisorRepo;
 import web.ide.devEnviroment.repository.UserRepo;
 import web.ide.devEnviroment.security.Encryptor;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class StudentService {

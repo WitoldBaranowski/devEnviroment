@@ -1,5 +1,7 @@
 package web.ide.devEnviroment.model;
 
+import web.ide.devEnviroment.model.db.Student;
+
 public class CodeDTO {
     private Student student;
     private String program;

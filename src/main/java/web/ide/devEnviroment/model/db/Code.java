@@ -1,4 +1,6 @@
-package web.ide.devEnviroment.model;
+package web.ide.devEnviroment.model.db;
+
+import web.ide.devEnviroment.model.db.Student;
 
 import javax.persistence.*;
 import java.io.Serializable;

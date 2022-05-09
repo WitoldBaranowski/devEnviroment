@@ -2,7 +2,7 @@ package web.ide.devEnviroment.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import web.ide.devEnviroment.model.User;
+import web.ide.devEnviroment.model.db.User;
 
 import java.util.Optional;
 

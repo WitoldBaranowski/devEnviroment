@@ -2,8 +2,7 @@ package web.ide.devEnviroment.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import web.ide.devEnviroment.model.Student;
-import web.ide.devEnviroment.model.Supervisor;
+import web.ide.devEnviroment.model.db.Student;
 
 import java.util.List;
 import java.util.Optional;

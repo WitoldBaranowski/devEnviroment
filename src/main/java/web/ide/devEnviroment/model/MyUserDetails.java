@@ -3,6 +3,8 @@ package web.ide.devEnviroment.model;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import web.ide.devEnviroment.model.db.Supervisor;
+import web.ide.devEnviroment.model.db.User;
 
 import java.util.Arrays;
 import java.util.Collection;

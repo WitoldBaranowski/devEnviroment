@@ -3,7 +3,6 @@ package web.ide.devEnviroment.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import web.ide.devEnviroment.model.Student;
 import web.ide.devEnviroment.model.StudentDTO;
 import web.ide.devEnviroment.model.UserDTO;
 import web.ide.devEnviroment.service.StudentService;
