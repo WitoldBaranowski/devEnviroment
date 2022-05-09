@@ -10,13 +10,11 @@ public class Supervisor {
     private Long id;
     private String username;
     private String email;
-    private String password;
     private Boolean isLocal;
 
     public Supervisor(String username, String email, String password, Boolean isLocal) {
         this.username = username;
         this.email = email;
-        this.password = password;
         this.isLocal = isLocal;
     }
 
@@ -52,11 +50,4 @@ public class Supervisor {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
