@@ -11,6 +11,7 @@ import web.ide.devEnviroment.repository.CodeRepo;
 import web.ide.devEnviroment.repository.StudentRepo;
 import web.ide.devEnviroment.repository.SupervisorRepo;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,12 +39,12 @@ public class SupervisorService {
         return studentDTOS;
     }
 
-    public List<CodeDisplayDTO> returnCodes(StudentDTO studentDTO){
+    public List<CodeDisplayDTO> returnCodes(StudentDTO studentDTO) throws IOException {
         List<Code> codes = codeRepo.getCodeByStudent(studentDTO.getId());
         List<CodeDisplayDTO> codeDisplayDTOS = new ArrayList<>();
         for (Code code: codes
         ) {
-            codeDisplayDTOS.add(new CodeDisplayDTO(code.getProgram(),simplifyDate(code.getTimestamp())));
+            codeDisplayDTOS.add(new CodeDisplayDTO(Compression.decompressB64(code.getProgram()),simplifyDate(code.getTimestamp())));
         }
         return codeDisplayDTOS;
     }

@@ -10,8 +10,10 @@ import web.ide.devEnviroment.repository.CodeRepo;
 import web.ide.devEnviroment.repository.StudentRepo;
 import web.ide.devEnviroment.repository.SupervisorRepo;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.zip.GZIPOutputStream;
 
 
 @Service
@@ -34,7 +36,7 @@ public class CodeService {
     public String addCode(CodeDTO codeDTO) throws URISyntaxException, IOException, InterruptedException {
         Code code = new Code();
         code.setStudent(codeDTO.getStudent());
-        code.setProgram(codeDTO.getProgram());
+        code.setProgram(Compression.compressAndReturnB64(codeDTO.getProgram()));
         code.setTimestamp(new java.util.Date());
         codeRepo.save(code);
         Supervisor supervisor = studentRepo.findStudentById(codeDTO.getStudent().getId()).get().getSupervisor();

@@ -46,6 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/student/add").permitAll()
+                .antMatchers("/supervisor/add").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -91,9 +92,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-//    @Override
-//    @Bean
-//    protected UserDetailsService userDetailsService() {
-//
-//    }
 }
