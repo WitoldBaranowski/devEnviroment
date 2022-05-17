@@ -1,10 +1,11 @@
 package web.ide.devEnviroment.model.db;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="supervisor")
-public class Supervisor {
+public class Supervisor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;

@@ -35,4 +35,10 @@ public class SupervisorController {
         supervisorService.updateIsLocal(supervisorDTO);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @GetMapping("/find/{username}")
+    public ResponseEntity<SupervisorDTO> getSupervisor(@PathVariable("username") String username){
+        SupervisorDTO supervisorDTO = supervisorService.findSupervisorByUsername(username);
+        return new ResponseEntity<>(supervisorDTO, HttpStatus.OK);
+    }
 }

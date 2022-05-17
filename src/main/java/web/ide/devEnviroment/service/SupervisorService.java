@@ -3,6 +3,7 @@ package web.ide.devEnviroment.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import web.ide.devEnviroment.exeption.SupervisorNotFoundException;
 import web.ide.devEnviroment.model.*;
 import web.ide.devEnviroment.model.db.Code;
 import web.ide.devEnviroment.model.db.Student;
@@ -47,6 +48,17 @@ public class SupervisorService {
             codeDisplayDTOS.add(new CodeDisplayDTO(Compression.decompressB64(code.getProgram()),simplifyDate(code.getTimestamp())));
         }
         return codeDisplayDTOS;
+    }
+
+    public SupervisorDTO findSupervisorByUsername (String username){
+        Supervisor supervisor = null;
+        try {
+            supervisor = supervisorRepo.findSupervisorByUsername(username);
+        } catch (Exception e) {
+            throw new SupervisorNotFoundException("Supervisor with that username does not exist");
+        }
+        SupervisorDTO supervisorDTO = new SupervisorDTO(supervisor.getId(), supervisor.getUsername(), supervisor.getEmail(), supervisor.getLocal());
+        return supervisorDTO;
     }
 
     public String simplifyDate(Date date){

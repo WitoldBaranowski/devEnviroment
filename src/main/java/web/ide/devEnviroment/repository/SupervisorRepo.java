@@ -5,5 +5,6 @@ import web.ide.devEnviroment.model.db.Supervisor;
 
 public interface SupervisorRepo extends JpaRepository<Supervisor, Long> {
     Supervisor findSupervisorById(Long id);
+    Supervisor findSupervisorByUsername(String username);
 
 }

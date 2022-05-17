@@ -18,6 +18,7 @@ public class Code implements Serializable {
     @JoinColumn(name="id_student", referencedColumnName = "id", nullable = false)
     private Student student;
 
+    @Column(columnDefinition="varchar(10000)")
     private String program;
 
     private Date timestamp;

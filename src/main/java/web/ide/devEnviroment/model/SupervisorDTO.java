@@ -1,17 +1,15 @@
 package web.ide.devEnviroment.model;
 
 public class SupervisorDTO {
-    private Long id;
     private String username;
     private String email;
-    private String password;
     private Boolean isLocal;
+    private Long id;
 
-    public SupervisorDTO(Long id, String username, String email, String password, Boolean isLocal) {
+    public SupervisorDTO(Long id, String username, String email, Boolean isLocal) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.password = password;
         this.isLocal = isLocal;
     }
 
@@ -37,14 +35,6 @@ public class SupervisorDTO {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Boolean getLocal() {
