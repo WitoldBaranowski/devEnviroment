@@ -69,4 +69,12 @@ public class Code implements Serializable {
     public void setProgram(String program) {
         this.program = program;
     }
+
+    @Override
+    public String toString() {
+        return "Code{" +
+                "program='" + program + '\'' +
+                ", timestamp=" + timestamp +
+                '}';
+    }
 }

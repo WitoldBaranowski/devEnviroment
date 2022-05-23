@@ -13,7 +13,7 @@ public class Supervisor implements Serializable {
     private String email;
     private Boolean isLocal;
 
-    public Supervisor(String username, String email, String password, Boolean isLocal) {
+    public Supervisor(String username, String email, Boolean isLocal) {
         this.username = username;
         this.email = email;
         this.isLocal = isLocal;

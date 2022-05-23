@@ -40,6 +40,7 @@ public class ApiService {
                 .headers("Content-Type", "application/json;charset=UTF-8")
                 .POST(HttpRequest.BodyPublishers.ofString(req.toString()))
                 .build();
+        System.out.println(req);
         HttpResponse<String> response = HttpClient.newBuilder()
                 .build()
                 .send(request, HttpResponse.BodyHandlers.ofString());
